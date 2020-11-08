@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course/answer.dart';
+import './question.dart';
 import './question.dart';
 
 void main() {
@@ -13,7 +15,20 @@ class Myapp extends StatefulWidget {
 }
 
 class MyAppState extends State<Myapp> {
-  var questions = ['Favorite color', 'Favorite animal'];
+  var questions = [
+    {
+      'questionText': 'Favorite color',
+      'answerText': ['Red', 'Blue', 'Green', 'Yellow']
+    },
+    {
+      'questionText': 'Favorite animal',
+      'answerText': ['Cow', 'Lion', 'Girrafe', 'chetah']
+    },
+    {
+      'questionText': 'Favorite Framework',
+      'answerText': ['Angular', 'React', 'Vue', 'None']
+    },
+  ];
 
   var index = 0;
   void answerQuestion() {
@@ -37,10 +52,10 @@ class MyAppState extends State<Myapp> {
         ),
         body: Column(
           children: [
-            Question(questions[index]),
-            RaisedButton(child: Text('Answer1'), onPressed: answerQuestion),
-            RaisedButton(child: Text('Answer1'), onPressed: answerQuestion),
-            RaisedButton(child: Text('Answer1'), onPressed: answerQuestion),
+            Question(questions[index]['questionText']),
+            ...(questions[index]['answerText'] as List<String>).map((answer) {
+              return Answer(answerQuestion, answer);
+            }).toList(),
           ],
         ),
       ),
