@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course/answer.dart';
-import './question.dart';
-import './question.dart';
+
+import './result.dart';
+import './quiz.dart';
 
 void main() {
   runApp(Myapp());
@@ -15,6 +15,12 @@ class Myapp extends StatefulWidget {
 }
 
 class MyAppState extends State<Myapp> {
+  void _resetQuiz() {
+    setState(() {
+      index = 0;
+    });
+  }
+
   var questions = [
     {
       'questionText': 'Favorite color',
@@ -35,11 +41,7 @@ class MyAppState extends State<Myapp> {
     print(index);
 
     setState(() {
-      if (index == questions.length - 1) {
-        index = 0;
-      } else {
-        index = index + 1;
-      }
+      index = index + 1;
     });
     print(index);
   }
@@ -47,18 +49,18 @@ class MyAppState extends State<Myapp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('firstApp'),
-        ),
-        body: Column(
-          children: [
-            Question(questions[index]['questionText']),
-            ...(questions[index]['answerText'] as List<String>).map((answer) {
-              return Answer(answerQuestion, answer);
-            }).toList(),
-          ],
-        ),
-      ),
+          appBar: AppBar(
+            title: Text('firstApp'),
+          ),
+          body: (index < questions.length)
+              ? Quiz(
+                  answerQuestion: answerQuestion,
+                  index: index,
+                  questions: questions,
+                )
+              : Result(
+                  resetQuiz: _resetQuiz,
+                )),
     );
   }
 }
