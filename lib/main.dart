@@ -21,7 +21,7 @@ class MyAppState extends State<Myapp> {
     });
   }
 
-  var questions = [
+  final questions = [
     {
       'questionText': 'Favorite color',
       'answerText': ['Red', 'Blue', 'Green', 'Yellow']
