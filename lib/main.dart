@@ -39,7 +39,6 @@ class MyAppState extends State<Myapp> {
   var index = 0;
   void answerQuestion() {
     print(index);
-    print(index);
     setState(() {
       index = index + 1;
     });
