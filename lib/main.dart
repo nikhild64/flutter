@@ -21,7 +21,7 @@ class MyAppState extends State<Myapp> {
     });
   }
 
-  final questions = [
+  final questions = const [
     {
       'questionText': 'Favorite color',
       'answerText': ['Red', 'Blue', 'Green', 'Yellow']
